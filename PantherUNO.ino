@@ -101,7 +101,7 @@ const unsigned char myBitmap [] PROGMEM = {
 Adafruit_SSD1306 ecranOLED(128, 64, &Wire, -1);
 #define adresseI2CecranOLED2 0x3D
 Adafruit_SSD1306 ecranOLED2(128, 64, &Wire, -1);
-//init PWM extander
+//def PWM extander
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 //def accéléromètre
 MMA8452Q accel;
@@ -160,10 +160,6 @@ void setup() {
   pinMode(ledultrason,OUTPUT);
   pinMode(ledforce,OUTPUT);
 
-  //initialisation de l'extender
-  pwm.begin();
-  pwm.setOscillatorFrequency(27000000);
-  pwm.setPWMFreq(50); 
 
   //affichage de démarrage
   ecranOLED.begin(SSD1306_SWITCHCAPVCC, adresseI2CecranOLED);
@@ -174,15 +170,20 @@ void setup() {
   ecranOLED.setTextColor(SSD1306_WHITE, SSD1306_BLACK);                 
   ecranOLED.setTextSize(1);
 
-  ecranOLED2.begin(SSD1306_SWITCHCAPVCC, adresseI2CecranOLED2);
+  /*ecranOLED2.begin(SSD1306_SWITCHCAPVCC, adresseI2CecranOLED2);
   ecranOLED2.clearDisplay();
   ecranOLED2.drawBitmap(0, 0, myBitmap, 128, 64, WHITE);
   ecranOLED2.display();
   ecranOLED2.setCursor(0, 0);
   ecranOLED2.setTextColor(SSD1306_WHITE, SSD1306_BLACK);                 
-  ecranOLED2.setTextSize(1);
+  ecranOLED2.setTextSize(1);*/
 
-  //initialisation de l'accéléromètre
+  //initialisation de l'extender
+  pwm.begin();
+  pwm.setOscillatorFrequency(27000000);
+  pwm.setPWMFreq(50); 
+
+//initialisation de l'accéléromètre
   accel.init(SCALE_2G, ODR_800);
 
   //son de démarrage windowsXP pour le fun
